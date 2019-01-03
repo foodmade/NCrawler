@@ -1,0 +1,13 @@
+{
+  "name": "Crawler_gen_oo",
+  "description": "Crawler_gen_oo.",
+  "version": "1.0.1",
+  "private": true,
+  "dependencies": {
+    "cheerio": "0.18.0",
+    "iconv-lite": "0.4.6",
+    "line-reader": "0.2.4",
+    "request": "^2.81.0",
+    "urlencode": "0.2.0"
+  }
+}

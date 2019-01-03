@@ -1,0 +1,1 @@
+node index.js >> .\log\crawler_gen.log

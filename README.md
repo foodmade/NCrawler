@@ -56,6 +56,4 @@ http://127.0.0.1:8885/start
 #### 结果 图片
 ![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
 
-#### Hello Word完毕
-
 

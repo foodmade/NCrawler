@@ -46,7 +46,7 @@ git clone "https://github.com/foodmade/NCrawler.git"
 ```
 npm install
 ```
-#### 启动服务 node index.js (默认监听端口8885) config.js中自定更改
+#### 启动服务 node index.js
 ```
 node index.js
 [2019-08-26 17:24:26 <lvl:1> ]-----------------Crawler(General, atom, OO) sever{} started:8885---------------------

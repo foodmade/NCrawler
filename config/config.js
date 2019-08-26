@@ -6,13 +6,13 @@ var _LOG_LEVEL_DEBUG = 8;
 
 module.exports = {
     CRAWLER:{
-        workersCount:1,   //create Worker Thread count
-        workerRetryMaxCount:3,  //worker max retry count
-        requestTaskTimeElapse:500, //http request timeout
-        workerHeartBeatTimeElapse:1000,  //worker heart time
-        maxTaskInQueue:5,  
-        workerTimeout:60000,
-        debug:false
+        workersCount:1,                   //Number of Workers Created
+        workerRetryMaxCount:3,            //Maximum number of retries in case of an exception to work execution
+        requestTaskTimeElapse:500,        //Http Request Timeout
+        workerHeartBeatTimeElapse:1000,   //Worker heartbeat
+        maxTaskInQueue:5,                 //Worker's task queue
+        workerTimeout:60000,              //Task execution timeout
+        debug:true                        //If it's local debugging set true
     },
     WORKER:{
         waitValidatingTime:1 * 30 * 1000,
@@ -20,24 +20,24 @@ module.exports = {
         autoRedirectionMaxDepth:1
     },
     PARSER:{
-      defParserCodeFilePath:'./frame/dynamic_parser/parsers/parser.js'   //解析器路径 (本地调试时使用)
+      defParserCodeFilePath:'./frame/dynamic_parser/parsers/movie/GVideo/home_parser.js'   //Parser path (used for local debugging)
     },
     SERVER:{
          id:'',
-         port:8885, ///调试端口,
+         port:8885, //Debugging port
          accessControl:{
             ipWhiteList:[]
          }
     },
     DATA_CENTER:{
         accessToken:'',
-        hostname:'192.168.1.4',  //服务器地址
-        port:8082,               
+        hostname:'127.0.0.1',              //Server address
+        port:80,
         agent:false,
-        taskReqPath:'/getTask.do',  //获取任务接口
-        taskReqMethod:'GET',
-        taskReqHeaders:{},
-        taskRspPath:'/commitTaskResult.do',  //提交解析数据接口
+        taskReqPath:'/getTask.do',         //Fetch Task For Server
+        taskReqMethod:'GET',               //Protocol
+        taskReqHeaders:{},                 //Headers....
+        taskRspPath:'/commitTaskResult.do',//Submit crawler parsed data to the server
         taskRspMethod:'POST',
         taskRspHeaders:{
             'Host':'127.0.0.1',
@@ -48,7 +48,7 @@ module.exports = {
 
 
     },
-	//日志级别
+	//Logger Level
     LOG:{
         level:_LOG_LEVEL_INFO,
         _LOG_LEVEL_NO_LOG:_LOG_LEVEL_NO_LOG,
@@ -57,6 +57,7 @@ module.exports = {
         _LOG_LEVEL_INFO:_LOG_LEVEL_INFO,
         _LOG_LEVEL_DEBUG:_LOG_LEVEL_DEBUG
     },
+    //
     updateConfig:function(configData){
         var THIS_MODULE = this;
         try{

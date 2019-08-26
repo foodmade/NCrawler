@@ -2,21 +2,11 @@ var workerFactory = require('child_process');
 var path = require('path');
 var config = require('../config/config');
 var utils = require('./utils');
-var test_data = require('./test_data/test_data');
-var test_data_tmall = require('./test_data/test_data_tmall');
-var test_data_jd_weixin = require('./test_data/test_data_jd_weixin');
-var test_data_jd_app = require('./test_data/test_data_jd_app');
-var test_data_jd_shop = require('./test_data/test_data_jd_shop');
 var test_data_gvideo = require('./test_data/test_data_gvideo');
 
-//var dynamic_parser = require('./dynamic_parser');
-
-
 var crawlerConf = config.CRAWLER;
-var dataCenterConf = config.DATA_CENTER;
 
 var _PIPE_MSG_WORKER_RUN_REQ = 100000;
-var _PIPE_MSG_WORKER_RUN_RSP = 200000;
 
 var _PIPE_MSG_WORKER_SEEKING_TASK_REQ = 100001;
 var _PIPE_MSG_WORKER_SEEKING_TASK_RSP = 200001;
@@ -30,39 +20,17 @@ var _PIPE_MSG_WORKER_UPDATE_PARSER_REQ = 100003;
 var _PIPE_MSG_WORKER_HEART_BEAT_REQ = 100100;
 var _PIPE_MSG_WORKER_HEART_BEAT_RSP = 200100;
 
+var workerPath = path.join(__dirname, 'worker.js');
 
-
-
-var workerPath = path.join(__dirname, 'workerEx.js');
-
-
-
-
-var _WORKER_STATE_NOT_INITED = -1;
-var _WORKER_STATE_DEAD = 0;
 var _WORKER_STATE_ALIVE = 1;
 
 var _REQ_TASK_STATE_FREE = 1;
 var _REQ_TASK_STATE_PENDDING = 2;
 
-
-var _TASK_TYPE_CRAWLING = 1;
 var _TASK_TYPE_UPDATE_PARSER = 2;
 var _TASK_TYPE_UPDATE_CONFIG = 3;
 
 
-/*
-
-_WORKERS=[
-    {wid:0, process:null, state:_WORKER_STATE_NOT_INITED, heartBeatTimeStamp:0, seekingTaskTimeStamp:0}
-];
-*/
-
-var _TEST_TASKS = test_data.TEST_DATA.TEST_TASKS;
-var _TEST_TASKS_TMALL = test_data_tmall.TEST_DATA.TEST_TASKS;
-var _TEST_TASKS_JD_WEIXIN = test_data_jd_weixin.TEST_DATA_JD_WEIXIN.TEST_TASKS;
-var _TEST_TASKS_JD_APP = test_data_jd_app.TEST_DATA_JD_APP.TEST_TASKS;
-var _TEST_TASKS_JD_SHOP = test_data_jd_shop.TEST_DATA_JD_SHOP.TEST_TASKS;
 var _TEST_TASKS_GVIDEO = test_data_gvideo.TEST_DATA_GVIDEO_TASKS.TEST_TASKS;
 
 var _CRAWLER_STATE_RUNNING = 1;
@@ -71,8 +39,6 @@ var _CRAWLER_STATE_STANDING = 0;
 
 var _TASK_REQ_STATE_OK = 1;
 var _TASK_REQ_STATE_ERROR = 0;
-
-
 
 
 
@@ -266,10 +232,9 @@ module.exports = {
                 THIS_MODULE._TASK_REQ_STATE = _TASK_REQ_STATE_ERROR;
             }
 
-
-            //本地调试任务
+            //Local Debugging Task
             if(THIS_MODULE._DEBUG_PATTERN){
-                THIS_MODULE.appendTasks([_TEST_TASKS_GVIDEO[10]]);
+                THIS_MODULE.appendTasks([_TEST_TASKS_GVIDEO[0]]);
             }
 
             THIS_MODULE._REQUEST_TASKS_STATE = _REQ_TASK_STATE_FREE;
@@ -335,13 +300,10 @@ module.exports = {
             worker.seekingTaskTimeStamp = (new Date()).getTime();
             THIS_MODULE.sendWorkerMessage(worker, wid, _PIPE_MSG_WORKER_SEEKING_TASK_RSP, null);
         }
-
-
     },
     workersUpdateConfig:function(task){
         var THIS_MODULE = this;
         try{
-
 
             for(var i in THIS_MODULE._WORKERS){
                 var worker = THIS_MODULE._WORKERS[i];
@@ -361,7 +323,6 @@ module.exports = {
         var THIS_MODULE = this;
 
         try{
-
 
             for(var i in THIS_MODULE._WORKERS){
                 var worker = THIS_MODULE._WORKERS[i];

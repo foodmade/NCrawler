@@ -1,5 +1,4 @@
 var crawler = require('./crawler');
-//var dynamic_parser = require('./dynamic_parser');
 
 module.exports = {
     m_crawler:null,
@@ -10,8 +9,6 @@ module.exports = {
             THIS_MODULE.m_crawler = crawler;
             THIS_MODULE.m_crawler.init({uuid:THIS_MODULE.m_uuid++});
         }
-
-       // dynamic_parser.init();
     },
     start:function(pathName){
         var THIS_MODULE = this;
@@ -19,7 +16,6 @@ module.exports = {
     },
     stop:function(pathName){
         var THIS_MODULE = this;
-        //return THIS_MODULE.m_crawler.crawlerStop();
     },
     state:function(pathName){
         var THIS_MODULE = this;
@@ -27,6 +23,5 @@ module.exports = {
     },
     restart:function(pathName){
         var THIS_MODULE = this;
-        //return THIS_MODULE.m_crawler.crawlerRestart();
     }
 };

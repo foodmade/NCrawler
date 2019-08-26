@@ -6,22 +6,6 @@ var vm = require('vm');
 var lineReader = require('line-reader');
 var iconv = require('iconv-lite');
 
-/*
-var parser = {
-  parserCode:''
-};
-
-*/
-
-
-
-/*
-
-var _TEST_PARSERS = [
-    {parserCode:testCode1, parserName:''}
-];
-*/
-
 var _RETCODE_SUCCESS = 1;
 var _RETCODE_VALIDATING = -1;
 var _RETCODE_UNPARSEABLE = -2;
@@ -115,7 +99,6 @@ module.exports = {
                 THIS_MODULE.log('DParser ' + i + ' do parsing exception:' + exp.stack, config.LOG._LOG_LEVEL_ERROR);
             }
         }
-        // THIS_MODULE.log('DParser FAILED, html:' + htmlString, config.LOG._LOG_LEVEL_ERROR);
         result.retcode = _RETCODE_ALL_HANDLER_FAILED;
         return result;
     },

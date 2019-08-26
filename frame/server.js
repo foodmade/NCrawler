@@ -7,12 +7,8 @@ var domain = require('domain');
 
 function start(router, handler) {
 
-
-
-
     http.createServer(onRequest).listen(config.SERVER.port);
     utils.log('-----------------Crawler(General, atom, OO) sever{' + config.SERVER.id + '} started:' + config.SERVER.port + '---------------------', config.LOG._LOG_LEVEL_ERROR);
-
 
     ////////////////////////////////////////////////////////////////
     function onRequest(request, response) {
@@ -32,8 +28,6 @@ function start(router, handler) {
         }
 
         var retdata = router.route(handler, pathname);
-
-
 
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write(JSON.stringify(retdata));

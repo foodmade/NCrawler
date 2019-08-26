@@ -4,9 +4,7 @@ exports.TEST_DATA_GVIDEO_TASKS = {
         {type:_TASK_TYPE_CRAWLING, info:'', ///gvideo 首页搜索   ---  0
             taskData:{
                 crawlingOptions:{
-                    // url:'http://97daimeng.com/index.php?m=vod-list-id-1-pg-2-order--by-hits-class-0-year-0-letter--area--lang-.html',
                     url:'http://97daimeng.com/index.php?m=vod-list-id-1-pg-15-order--by-hits-class-0-year-0-letter--area--lang-.html',
-                    // url:'http://97daimeng.com/index.php?m=vod-list-id-2.html',
                     method: 'GET',
                     gzip:true,
                     headers:{

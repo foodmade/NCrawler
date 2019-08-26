@@ -52,7 +52,6 @@ function parserHtml() {
             videoid:videoId
         })
     }
-    log('22222222222222222222222222',4);
     result.retcode = _RETCODE_SUCCESS;
     return result;
 
@@ -97,6 +96,8 @@ function parserFigure(figureDetail, $) {
 
 
 try{
+
+    log('html-------------:' + htmlString,4);
 
     htmlString = JSON.stringify(htmlString);
     result = parserHtml();

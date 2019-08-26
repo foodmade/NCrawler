@@ -23,9 +23,6 @@ function dateTimeFormat(date, fmt) { //author: meizz
     return fmt;
 }
 
-
-
-
 function httpRequest_POST(options, postData, errorCallback, successCallBack){
 
 
@@ -108,8 +105,6 @@ function httpRequest_POST(options, postData, errorCallback, successCallBack){
     });
 
 }
-
-
 
 function httpsRequest_POST(options, postData, errorCallback, successCallBack){
 
@@ -240,8 +235,6 @@ function httpRequest_GET(options, errorCallback, successCallBack){
     });
 
 }
-
-
 
 
 function httpsRequest_GET(options, errorCallback, successCallBack){

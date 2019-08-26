@@ -29,7 +29,7 @@
 ```
 
 # 快速入门 请确保已经安装了NodeJs
-`=============================================================================================`
+
 #### 目标网站：http://97daimeng.com/index.php?m=vod-list-id-1-pg-15-order--by-hits-class-0-year-0-letter--area--lang-.html 
 #### 下载NCrawler
 ```bash
@@ -48,65 +48,6 @@ node index.js
 http://127.0.0.1:8885/start
 #### 结果 图片
 ![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
-  
-#### json文本
-```json
-{
-    "rows": [
-        {
-            "videotype": "BD",
-            "videoname": "十月围城",
-            "figures": {
-                "actor": [
-                    "甄子丹",
-                    "王学圻"
-                ],
-                "director": [
-                    "陈德森"
-                ]
-            },
-            "videoid": "27313"
-        },
-        {
-            "videotype": "HD高清",
-            "videoname": "失孤",
-            "figures": {
-                "actor": [
-                    "刘雅瑟",
-                    "刘德华",
-                    "井柏然",
-                    "梁家辉",
-                    "吴君如"
-                ],
-                "director": [
-                    "彭三源",
-                    "王中磊"
-                ]
-            },
-            "videoid": "25951"
-        },
-        {
-            "videotype": "BD1280高清特效中英双字版",
-            "videoname": "超能陆战队",
-            "figures": {
-                "actor": [
-                    "斯科特·安第斯",
-                    "瑞恩·波特",
-                    "丹尼尔·海尼",
-                    "T·J·米勒"
-                ],
-                "director": [
-                    "唐·霍尔",
-                    "克里斯·威廉姆斯"
-                ]
-            },
-            "videoid": "23579"
-        }
-    ],
-    "retcode": 1,
-    "handler": 0
-}
-```
 
 #### Hello Word完毕
 

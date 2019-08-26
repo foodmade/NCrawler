@@ -9,4 +9,4 @@ reqHandler.init();
 
 server.start(router, reqHandler);
 
-crawler.crawlerStart();
+// crawler.crawlerStart();

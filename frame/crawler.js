@@ -2,7 +2,7 @@ var workerFactory = require('child_process');
 var path = require('path');
 var config = require('../config/config');
 var utils = require('./utils');
-var test_data_gvideo = require('./test_data/test_data_gvideo');
+var test_data = require('./test_data/test_data');
 
 var crawlerConf = config.CRAWLER;
 
@@ -31,7 +31,7 @@ var _TASK_TYPE_UPDATE_PARSER = 2;
 var _TASK_TYPE_UPDATE_CONFIG = 3;
 
 
-var _TEST_TASKS_GVIDEO = test_data_gvideo.TEST_DATA_GVIDEO_TASKS.TEST_TASKS;
+var _TEST_TASKS = test_data.TEST_DATA_GVIDEO_TASKS.TEST_TASKS;
 
 var _CRAWLER_STATE_RUNNING = 1;
 var _CRAWLER_STATE_STANDING = 0;
@@ -234,7 +234,7 @@ module.exports = {
 
             //Local Debugging Task
             if(THIS_MODULE._DEBUG_PATTERN){
-                THIS_MODULE.appendTasks([_TEST_TASKS_GVIDEO[0]]);
+                THIS_MODULE.appendTasks([_TEST_TASKS[0]]);
             }
 
             THIS_MODULE._REQUEST_TASKS_STATE = _REQ_TASK_STATE_FREE;

@@ -97,8 +97,6 @@ function parserFigure(figureDetail, $) {
 
 try{
 
-    log('html-------------:' + htmlString,4);
-
     htmlString = JSON.stringify(htmlString);
     result = parserHtml();
 

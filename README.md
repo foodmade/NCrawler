@@ -35,7 +35,7 @@
 └─package.json              //依赖管理
 ```
 
-# 快速入门 请确保已经安装了NodeJs
+# 快速入门
 
 #### 目标网站：http://97daimeng.com/index.php?m=vod-list-id-1-pg-15-order--by-hits-class-0-year-0-letter--area--lang-.html 
 #### 下载NCrawler

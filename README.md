@@ -28,7 +28,7 @@
 └─package.json              //依赖管理
 ```
 
-# 快速入门
+# 快速入门 请确保已经安装了NodeJs
 `=============================================================================================`
 #### 目标网站：http://97daimeng.com/index.php?m=vod-list-id-1-pg-15-order--by-hits-class-0-year-0-letter--area--lang-.html 
 #### 下载NCrawler
@@ -39,9 +39,9 @@ git clone "https://github.com/foodmade/NCrawler.git"
 ```
 npm install
 ```
-#### 启动服务 (默认监听端口8885) config.js中自定更改
+#### 启动服务 node index.js (默认监听端口8885) config.js中自定更改
 ```
-D:\util\git_project\NCrawler>node index.js
+node index.js
 [2019-08-26 17:24:26 <lvl:1> ]-----------------Crawler(General, atom, OO) sever{} started:8885---------------------
 ```
 #### 激活工作线程 

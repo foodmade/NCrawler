@@ -56,7 +56,7 @@ npm install
 #### 一：定义网站地址
 `编辑 ./frame/test_data/test_data.js 增加如下任务`
 ```javascript
-    {type:'', info:'', ///shu800.com   ---  [0]
+    {type: 1, info:'', ///shu800.com   ---  [0]
             taskData:{
                 crawlingOptions:{
                     url:'http://www.shu800.com/xinggan/',

@@ -3,7 +3,6 @@
 
 - [NCrawler的优点](#NCrawler的优点)
 - [目录结构](#目录结构)
-- [快速入门](#快速入门)
 - [采集一批美女图片](#牛刀小试)
 
 # NCrawler的优点
@@ -41,9 +40,10 @@
 └─package.json              //依赖管理
 ```
 
-# 快速入门
+# 牛刀小试
 
-#### 目标网站：http://97daimeng.com/index.php?m=vod-list-id-1-pg-15-order--by-hits-class-0-year-0-letter--area--lang-.html 
+#### 目标网站：http://www.shu800.com/xinggan/
+
 #### 下载NCrawler
 ```bash
 git clone "https://github.com/foodmade/NCrawler.git"
@@ -52,15 +52,6 @@ git clone "https://github.com/foodmade/NCrawler.git"
 ```
 npm install
 ```
-#### 启动 
-```
-node index.js
-```
-#### 结果 图片
-![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
-
-# 牛刀小试
-#### 目标网站：http://www.shu800.com/xinggan/
 
 #### 一：定义网站地址
 `编辑 ./frame/test_data/test_data.js 增加如下任务`

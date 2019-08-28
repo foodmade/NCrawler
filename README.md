@@ -62,7 +62,7 @@ node index.js
 # 牛刀小试
 #### 目标网站：http://www.shu800.com/xinggan/
 
-#### 第一步：定义网站地址
+#### 一：定义网站地址
 `编辑 ./frame/test_data/test_data.js 增加如下任务`
 ```javascript
     {type:'', info:'', ///shu800.com   ---  [0]
@@ -79,7 +79,7 @@ node index.js
             }
         }
 ```
-#### 第二步：编写网页解析器
+#### 二：编写网页解析器
 `./frame/dynamic_parser/parsers 目录下增加 girl_parser.js`
 ```javascript
 
@@ -109,7 +109,7 @@ try{
 }
 ```
 
-#### 第三部：指派任务
+#### 三：指派任务
 `编辑 ./config/config.js 指定任务`
 ```javascript
 module.exports = {
@@ -122,7 +122,7 @@ module.exports = {
     },
 }
 ```
-#### 执行
+#### 四：执行
 ```
 node index.js
 ```

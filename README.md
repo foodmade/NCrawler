@@ -63,7 +63,6 @@ node index.js
 #### 目标网站：http://www.shu800.com/xinggan/
 
 #### 第一步：定义网站地址
-- 添加任务
 `编辑 ./frame/test_data/test_data.js 增加如下任务`
 ```javascript
     {type:'', info:'', ///shu800.com   ---  [0]
@@ -80,7 +79,7 @@ node index.js
             }
         }
 ```
-- 指定任务
+#### 指定任务
 `编辑 ./config/config.js 指定任务`
 ```javascript
 module.exports = {
@@ -90,7 +89,42 @@ module.exports = {
   }
 }
 ```
-- 编写网站解析器 
-` ./frame/dynamic_parser/parsers 目录下增加girl_parser.js`
+
+#### 编写网页解析器
+`./frame/dynamic_parser/parsers 目录下增加 girl_parser.js`
+```javascript
+
+function log(log, level){
+    utils.log('{DParser shu800:picture_list_parser ' + log, level);
+}
+
+try{
+    /**Print the target site source code**/
+    log("htmlString:"+htmlString,config.LOG._LOG_LEVEL_DEBUG);
+
+    /**Convert to jquery objects using cheerio**/
+    var $ = cheerio.load(htmlString);
+
+    /**Write custom web site parsing rules**/
+    var pic_list = $('ul.detail-list li');
+
+    for(var i=0; i<pic_list.length; i++){
+        var pic_address = $(pic_list[i]).find('img').attr('src');
+        var pic_name = $(pic_list[i]).find('div.dl-name a').text();
+
+        log('pic_name:' + pic_name,config.LOG._LOG_LEVEL_INFO);
+        log('pic_address:' + pic_address,config.LOG._LOG_LEVEL_INFO);
+    }
+}catch(exp){
+    log('Parsing exception:' + exp.message, config.LOG._LOG_LEVEL_ERROR);
+}
+```
+#### 执行
+```
+node index.js
+```
+#### 结果
+
+![girl](https://www.xiaomingblog.cn/upload/2019/8/girl-20c6c497cb324281b533d3d96c046efa.png)
 
 

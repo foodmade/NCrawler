@@ -4,6 +4,7 @@
 - [NCrawler的优点](#NCrawler的优点)
 - [目录结构](#目录结构)
 - [快速入门](#快速入门)
+- [采集一批美女图片](#牛刀小试)
 
 # NCrawler的优点
 - 内置Daemon Thread
@@ -60,5 +61,8 @@ node index.js
 http://127.0.0.1:8885/start
 #### 结果 图片
 ![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
+
+# 牛刀小试
+
 
 

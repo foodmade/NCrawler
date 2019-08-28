@@ -6,13 +6,14 @@ var _LOG_LEVEL_DEBUG = 8;
 
 module.exports = {
     CRAWLER:{
-        workersCount:1,                   //Number of Workers Created
+        workersCount:1,                   //Number of Workers Created. The same number of CPU cores as your server
         workerRetryMaxCount:3,            //Maximum number of retries in case of an exception to work execution
         requestTaskTimeElapse:500,        //Http Request Timeout
-        workerHeartBeatTimeElapse:1000,   //Worker heartbeat
+        workerHeartBeatTimeElapse:1000,   //Worker threads with the heartbeat of the control center
         maxTaskInQueue:5,                 //Worker's task queue
         workerTimeout:60000,              //Task execution timeout
-        debug:true                        //If it's local debugging set true
+        debug:true,                       //If it's local debugging set true
+        taskIndex:0                       //The task sequence number
     },
     WORKER:{
         waitValidatingTime:1 * 30 * 1000,
@@ -20,7 +21,7 @@ module.exports = {
         autoRedirectionMaxDepth:1
     },
     PARSER:{
-      defParserCodeFilePath:'./frame/dynamic_parser/parsers/movie/GVideo/home_parser.js'   //Parser path (used for local debugging)
+      defParserCodeFilePath:'./frame/dynamic_parser/parsers/girl_parser.js'   //Parser path (used for local debugging)
     },
     SERVER:{
          id:'',
@@ -45,8 +46,6 @@ module.exports = {
             'Accept-Encoding':'identity',
             'Connection':'keep-alive'
         }
-
-
     },
 	//Logger Level
     LOG:{

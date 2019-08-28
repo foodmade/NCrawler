@@ -79,18 +79,7 @@ node index.js
             }
         }
 ```
-#### 指定任务
-`编辑 ./config/config.js 指定任务`
-```javascript
-module.exports = {
-  CRAWLER:{
-    .....,
-    taskIndex:0 //这里对应TEST_DATA_TASK列表的索引,如上任务索引等于0
-  }
-}
-```
-
-#### 编写网页解析器
+#### 第二步：编写网页解析器
 `./frame/dynamic_parser/parsers 目录下增加 girl_parser.js`
 ```javascript
 
@@ -117,6 +106,20 @@ try{
     }
 }catch(exp){
     log('Parsing exception:' + exp.message, config.LOG._LOG_LEVEL_ERROR);
+}
+```
+
+#### 第三部：指派任务
+`编辑 ./config/config.js 指定任务`
+```javascript
+module.exports = {
+  CRAWLER:{
+    .....,
+    taskIndex:0 //这里对应TEST_DATA_TASK列表的索引,如上任务索引等于0
+  },
+  PARSER:{
+      defParserCodeFilePath:'./frame/dynamic_parser/parsers/girl_parser.js'   //指定解析器位置
+    },
 }
 ```
 #### 执行

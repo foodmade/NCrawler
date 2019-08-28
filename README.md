@@ -52,13 +52,10 @@ git clone "https://github.com/foodmade/NCrawler.git"
 ```
 npm install
 ```
-#### 启动服务 node index.js
+#### 启动 
 ```
 node index.js
-[2019-08-26 17:24:26 <lvl:1> ]-----------------Crawler(General, atom, OO) sever{} started:8885---------------------
 ```
-#### 激活工作线程 
-http://127.0.0.1:8885/start
 #### 结果 图片
 ![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
 
@@ -66,14 +63,15 @@ http://127.0.0.1:8885/start
 #### 目标网站：http://www.shu800.com/xinggan/
 
 #### 第一步：定义网站地址
-- 编辑 ./frame/test_data/test_data.js 添加任务
+- 添加任务
+`编辑 ./frame/test_data/test_data.js 增加如下任务`
 ```js
-    {type:_TASK_TYPE_CRAWLING, info:'', ///shu800 美女图片   ---  0
+    {type:'', info:'', ///shu800.com   ---  [0]
             taskData:{
                 crawlingOptions:{
                     url:'http://www.shu800.com/xinggan/',
                     method: 'GET',
-                    gzip:true, //建议设置为true,request模块会对于压缩过的网页源码自动解压
+                    gzip:true,
                     headers:{
                         'Host': 'www.shu800.com',
                     },
@@ -82,14 +80,16 @@ http://127.0.0.1:8885/start
             }
         }
 ```
-- 编辑./config/config.js
+- 指定任务
+`编辑 ./config/config.js 指定任务`
 ```js
 module.exports = {
   CRAWLER:{
     .....,
-    taskIndex:0 //这里对应TEST_DATA_TASK列表的索引
+    taskIndex:0 //这里对应TEST_DATA_TASK列表的索引,如上任务索引等于0
   }
 }
 ```
-
+- 编写网站解析器 
+`解析器统一写在 ./frame/dynamic_parser/parsers 目录下`
 

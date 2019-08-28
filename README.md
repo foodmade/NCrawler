@@ -65,7 +65,7 @@ node index.js
 #### 第一步：定义网站地址
 - 添加任务
 `编辑 ./frame/test_data/test_data.js 增加如下任务`
-```js
+```
     {type:'', info:'', ///shu800.com   ---  [0]
             taskData:{
                 crawlingOptions:{
@@ -82,7 +82,7 @@ node index.js
 ```
 - 指定任务
 `编辑 ./config/config.js 指定任务`
-```js
+```
 module.exports = {
   CRAWLER:{
     .....,
@@ -91,5 +91,6 @@ module.exports = {
 }
 ```
 - 编写网站解析器 
-`解析器统一写在 ./frame/dynamic_parser/parsers 目录下`
+` ./frame/dynamic_parser/parsers 目录下增加girl_parser.js`
+
 

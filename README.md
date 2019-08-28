@@ -1,14 +1,16 @@
 # Welcome to NCrawler
 > 此项目使用NodeJs编写,适用于针对性网页爬取。你只需要编写你喜爱网页的解析器(parser),便可以很轻松的采集到你想要的数据
+
+- [NCrawler的优点](#NCrawler的优点)
+- [目录结构](#目录结构)
+- [快速入门](#快速入门)
+
 # NCrawler的优点
 - 内置Daemon Thread
 - 无缝集成jquery,编写解析器(parser)方便简单
 - 支持配置中心,server端动态更新NCrawler配置.
 - 服务器端可动态推送爬虫最新解析器
 - more...
-
-- [目录结构](#目录结构)
-- [快速入门](#快速入门)
 
 
 ### 目录结构

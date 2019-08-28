@@ -63,6 +63,40 @@ http://127.0.0.1:8885/start
 ![crawlerMovies](https://www.xiaomingblog.cn/upload/2019/8/crawlerMovies-9d820bdaf3d242c6a3ec3a932862a922.png)
 
 # 牛刀小试
+#### 目标网站：http://www.shu800.com/xinggan/
 
+#### 第一步：定义网站地址
+- 编辑./frame/test_data/test_data.js
+```js
+exports.TEST_DATA_TASKS = {
+    TEST_TASKS:[
+        {type:_TASK_TYPE_CRAWLING, info:'', ///shu800 美女图片   ---  0
+            taskData:{
+                crawlingOptions:{
+                    url:'http://www.shu800.com/xinggan/',
+                    method: 'GET',
+                    gzip:true, //建议设置为true,request模块会对于压缩过的网页源码自动解压
+                    headers:{
+                        'Host': 'www.shu800.com',
+                        'Pragma': 'no-cache',
+                        'Upgrade-Insecure-Requests': 1,
+                        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+                    },
+                    agent:false
+                }
+            }
+        }
+    ]
+};
+```
+- 编辑./config/config.js. CRAWLER.taskIndex = 0
+```json
+module.exports = {
+  CRAWLER:{
+    taskIndex:0 //这里对应TEST_DATA_TASK列表的索引
+  }
+
+}
+```
 
 

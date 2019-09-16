@@ -11,6 +11,21 @@ var _RETCODE_VALIDATING = -1;
 var _RETCODE_UNPARSEABLE = -2;
 var _RETCODE_ALL_HANDLER_FAILED = - 10000;
 
+
+var sharedParam = {
+    vm:vm,
+    Buffer:Buffer,
+    iconv:iconv,
+    urlencode:urlencode,
+    htmlString:'',
+    dataBuff:'',
+    utils:utils,
+    cheerio:cheerio,
+    config:config,
+    parserInfo:{},
+    result:{}
+};
+
 module.exports = {
     _PARSERS:[],
     init:function() {
@@ -68,19 +83,9 @@ module.exports = {
         for(var i = 0; i < THIS_MODULE._PARSERS.length; ++i){
             try{
                 var dParser = THIS_MODULE._PARSERS[i];
-                var sharedParam = {
-                    vm:vm,
-                    Buffer:Buffer,
-                    iconv:iconv,
-                    urlencode:urlencode,
-                    htmlString:htmlString,
-                    dataBuff:dataBuff,
-                    utils:utils,
-                    cheerio:cheerio,
-                    config:config,
-                    parserInfo:{},
-                    result:{}
-                };
+                
+                sharedParam.htmlString = htmlString;
+                sharedParam.Buffer = dataBuff;
 
                 vm.runInNewContext(dParser.parserCode, sharedParam);
                 result = sharedParam.result;
@@ -100,6 +105,47 @@ module.exports = {
             }
         }
         result.retcode = _RETCODE_ALL_HANDLER_FAILED;
+        return result;
+    },
+
+    /**
+     * 
+     * @param {网站原始源码<String>} htmlString 
+     * @param {网站源码<buff>}      dataBuff 
+     * @param {解析器<String>}      parserCode 
+     */
+    doCustomParser:function(htmlString,dataBuff,parserCode){
+        var THIS_MODULE = this;
+        var result = {
+            retcode: _RETCODE_ALL_HANDLER_FAILED,
+            errMsg: '',
+            prints:[],
+            items:[],
+            overTime:0,
+        };
+        
+        if(parserCode == null || !parserCode){
+            THIS_MODULE.log('NCrawler V:1.1.0 <Params parser must not be null> !!!', config.LOG._LOG_LEVEL_ERROR);
+            result.errMsg = 'Parser not found,Please check the input';
+            return result;
+        }
+        
+        sharedParam.htmlString = htmlString;
+        sharedParam.Buffer = dataBuff;
+        sharedParam.result = result;
+
+        try{
+            vm.runInNewContext(parserCode, sharedParam);
+            result = sharedParam.result;
+            result.retcode = _RETCODE_SUCCESS;
+        }catch(exp){
+            THIS_MODULE.log('DParser exception:' + exp.message, config.LOG._LOG_LEVEL_ERROR);
+            result.errMsg = exp.message;
+        }
+
+        THIS_MODULE.log('Do parser finish, retcode:' + result.retcode,
+            config.LOG._LOG_LEVEL_INFO);
+
         return result;
     },
     log:function(log, level){

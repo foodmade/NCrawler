@@ -20,7 +20,7 @@ var _PIPE_MSG_WORKER_UPDATE_PARSER_REQ = 100003;
 var _PIPE_MSG_WORKER_HEART_BEAT_REQ = 100100;
 var _PIPE_MSG_WORKER_HEART_BEAT_RSP = 200100;
 
-var workerPath = path.join(__dirname, 'worker.js');
+var workerPath = path.join(__dirname, 'worker_custom.js');
 
 var _WORKER_STATE_ALIVE = 1;
 
@@ -244,7 +244,6 @@ module.exports = {
     },
     appendTasks:function(tasks, getTasksTimeSpent){
         var THIS_MODULE = this;
-
         if(tasks == null || tasks == undefined){
             THIS_MODULE.log('Append  task error, "null" tasks.', config.LOG._LOG_LEVEL_ERROR);
             return;
@@ -252,7 +251,7 @@ module.exports = {
 
 
         for(var i in tasks){
-
+            
             if(tasks[i].type == _TASK_TYPE_UPDATE_CONFIG){
                 THIS_MODULE.log('Get update CONFIG task:' + JSON.stringify(tasks[i]), config.LOG._LOG_LEVEL_WARNING);
                 THIS_MODULE.setCachedConfig(tasks[i]);
@@ -271,7 +270,7 @@ module.exports = {
 
                 tasks[i].get_tasks_time_spent = getTasksTimeSpent;
                 THIS_MODULE._TASK_QUEUE.push(tasks[i]);
-                //THIS_MODULE.log('New task enqueue:' + JSON.stringify(tasks[i]), config.LOG._LOG_LEVEL_WARNING);
+                THIS_MODULE.log('New task enqueue:' + JSON.stringify(tasks[i]), config.LOG._LOG_LEVEL_DEBUG);
             }
 
         }
@@ -281,6 +280,7 @@ module.exports = {
         var THIS_MODULE = this;
 
         var targetTask = THIS_MODULE._TASK_QUEUE.shift();
+        THIS_MODULE.log('-Get task json:' + JSON.stringify(targetTask),config.LOG._LOG_LEVEL_DEBUG);
         var worker = THIS_MODULE._WORKERS[wid];
 
         if(targetTask != null && targetTask != undefined && worker != null){
@@ -362,7 +362,7 @@ module.exports = {
 
         /////////////////////////////////////////////////
         function __onWorkerMsg(msg){
-
+                
             var wid = msg.wid;
 
             switch(msg.msg){
@@ -439,8 +439,9 @@ module.exports = {
 
                     var rspDataObj = null;
                     try{
-                        //THIS_MODULE.log('Task JSON :' + rspDataBuff.toString(), config.LOG._LOG_LEVEL_ERROR);
+                        THIS_MODULE.log('Task JSON :' + rspDataBuff.toString(), config.LOG._LOG_LEVEL_DEBUG);
                         rspDataObj = JSON.parse(rspDataBuff.toString());
+                        
                     }catch(exp){
                         THIS_MODULE.log('Error, Task JSON parse FAILED:' + exp.message, config.LOG._LOG_LEVEL_ERROR);
                         THIS_MODULE.log('Errro, Task JSON :' + rspDataBuff.toString(), config.LOG._LOG_LEVEL_ERROR);

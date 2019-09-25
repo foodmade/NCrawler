@@ -12,7 +12,7 @@ module.exports = {
         workerHeartBeatTimeElapse:1000,   //Worker threads with the heartbeat of the control center
         maxTaskInQueue:5,                 //Worker's task queue
         workerTimeout:60000,              //Task execution timeout
-        debug:true,                       //If it's local debugging set true
+        debug:false,                       //If it's local debugging set true
         taskIndex:0                       //The task sequence number
     },
     WORKER:{
@@ -33,12 +33,12 @@ module.exports = {
     DATA_CENTER:{
         accessToken:'',
         hostname:'127.0.0.1',              //Server address
-        port:80,
+        port:8080,
         agent:false,
-        taskReqPath:'/getTask.do',         //Fetch Task For Server
+        taskReqPath:'/crawler/manage/getJsTask',         //Fetch Task For Server
         taskReqMethod:'GET',               //Protocol
         taskReqHeaders:{},                 //Headers....
-        taskRspPath:'/commitTaskResult.do',//Submit crawler parsed data to the server
+        taskRspPath:'/crawler/manage/commitJsTask',//Submit crawler parsed data to the server
         taskRspMethod:'POST',
         taskRspHeaders:{
             'Host':'127.0.0.1',

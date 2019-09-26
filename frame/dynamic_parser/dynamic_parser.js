@@ -121,7 +121,7 @@ module.exports = {
             errMsg: '',
             prints:[],
             items:[],
-            overTime:0,
+            overTime:0
         };
         
         if(parserCode == null || !parserCode){

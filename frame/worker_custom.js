@@ -161,20 +161,20 @@ var _WORKER = module.exports = {
                 __OnHttpReqError(error);
                 return;
             }else{
-                __onHttpRsp(rsp, body,parserCode);
+                __onHttpRsp(rsp, body,taskData);
 
             }
         });
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        function __onHttpRsp(rsp, body,parserCode){
+        function __onHttpRsp(rsp, body,taskData){
 
             if(rsp.statusCode == '200'){
 
                 THIS_MODULE.log('HTTP 200 header:' + JSON.stringify(rsp.headers), config.LOG._LOG_LEVEL_DEBUG);
                 THIS_MODULE.log('Handle rsp data buffer with encoding', config.LOG._LOG_LEVEL_DEBUG);
-                THIS_MODULE.doParsingEx(rsp.headers, body, Buffer.from(body),parserCode);
+                THIS_MODULE.doParsingEx(rsp.headers, body, Buffer.from(body),taskData);
 
             }else if(rsp.statusCode == '302' || rsp.statusCode == '301'){
 
@@ -201,10 +201,14 @@ var _WORKER = module.exports = {
             THIS_MODULE.doCrawlingError();
         }
     },
-    doParsingEx:function(headers,htmlString, dataBuff,parserCode){
+    doParsingEx:function(headers,htmlString, dataBuff,taskData){
 
         var THIS_MODULE = this;
-        var result = dynamic_parser.doCustomParser(htmlString, dataBuff,parserCode);
+        var result = dynamic_parser.doCustomParser(htmlString, dataBuff,taskData.code);
+        
+        //Set task seqId
+        result.taskSeq = taskData.seqId;
+
         THIS_MODULE.doCommitTaskResult(result);
         THIS_MODULE.doTaskOver();
 
@@ -228,13 +232,6 @@ var _WORKER = module.exports = {
 
         if(result){
 
-            var postData = {
-                tid:THIS_MODULE._WID,
-                // task:THIS_MODULE._CUR_TASK_INFO.task,
-                worker_time_spent:timeUsed,
-                result:result
-            };
-
             var options = {
                 hostname: config.DATA_CENTER.hostname,
                 port: config.DATA_CENTER.port,
@@ -244,10 +241,10 @@ var _WORKER = module.exports = {
             };
 
 
-           THIS_MODULE.log('Do commit task result:' + JSON.stringify(postData), config.LOG._LOG_LEVEL_INFO);
+           THIS_MODULE.log('Do commit task result:' + JSON.stringify(result), config.LOG._LOG_LEVEL_INFO);
            THIS_MODULE.log('Do commit task options:' + JSON.stringify(options), config.LOG._LOG_LEVEL_INFO);
 
-            utils.httpRequest_POST(options,postData,
+            utils.httpRequest_POST(options,result,
                 function(err){
                     THIS_MODULE.log('Do commit crwaling result data error:' + err.message, config.LOG._LOG_LEVEL_ERROR);
                     callbak();

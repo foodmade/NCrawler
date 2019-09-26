@@ -21,7 +21,7 @@ module.exports = {
         autoRedirectionMaxDepth:1
     },
     PARSER:{
-      defParserCodeFilePath:'./frame/dynamic_parser/parsers/girl_parser.js'   //Parser path (used for local debugging)
+      defParserCodeFilePath:''   //Parser path (used for local debugging)
     },
     SERVER:{
          id:'',
@@ -44,7 +44,8 @@ module.exports = {
             'Host':'127.0.0.1',
             'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Encoding':'identity',
-            'Connection':'keep-alive'
+            'Connection':'keep-alive',
+            'Content-Type':'application/json;charset=UTF-8'
         }
     },
 	//Logger Level

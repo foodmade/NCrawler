@@ -4,6 +4,8 @@ function log(log, level){
 
 try{
 
+    result.items = [];
+
     log('htmlString:'+htmlString,config.LOG._LOG_LEVEL_DEBUG);
 
 
@@ -17,6 +19,11 @@ try{
 
         log('pic_name:' + pic_name,config.LOG._LOG_LEVEL_INFO);
         log('pic_address:' + pic_address,config.LOG._LOG_LEVEL_INFO);
+        
+        result.items.push({
+            pic:pic_address,
+            name:pic_name
+        })
     }
 }catch(exp){
     log('Parsing exception:' + exp.message, config.LOG._LOG_LEVEL_ERROR);
